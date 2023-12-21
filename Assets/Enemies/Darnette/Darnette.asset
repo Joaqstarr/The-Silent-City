@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab39335284e2a224497a92b39900520b, type: 3}
+  m_Name: Darnette
+  m_EditorClassIdentifier: 
+  _maxHealth: 6
+  _portrait: {fileID: 21300000, guid: 9dccf73404b5033439ce46d3e8887337, type: 3}
+  _name: Darnette
+  _startLine: {fileID: 11400000, guid: 3fae81cbf7b9af1458476f826e0fe53f, type: 2}
+  _endLine: {fileID: 11400000, guid: 51e20d09dd947cb49a1af8b4e26be33c, type: 2}
+  _hitLine: []
+  _enemyAi: {fileID: 3441771344813672300, guid: 5592102ce51a75f419ad08fc4fe98ed7, type: 3}

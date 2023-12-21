@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1489ca28b14c4ea44b624b646c76c1ad, type: 3}
+  m_Name: RobumbleBeehive
+  m_EditorClassIdentifier: 
+  _attackTimer: 10
+  _prefabToSpawn: {fileID: 4623680654335295158, guid: 428bca7cf9799224c906ea8de6495920, type: 3}
+  _spawns:
+  - time: 1
+    amount: 1
+  - time: 4
+    amount: 1
+  - time: 7
+    amount: 1

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1489ca28b14c4ea44b624b646c76c1ad, type: 3}
+  m_Name: DarnetteAttack1
+  m_EditorClassIdentifier: 
+  _attackTimer: 11.2
+  _prefabToSpawn: {fileID: 3197818386264481954, guid: b2c5a0d7a95979949b3c15990629bf46, type: 3}
+  _spawns:
+  - time: 1
+    amount: 1
+  - time: 3
+    amount: 1
+  - time: 3.9
+    amount: 1
+  - time: 4.5
+    amount: 1
+  - time: 7
+    amount: 2
+  - time: 8
+    amount: 2
