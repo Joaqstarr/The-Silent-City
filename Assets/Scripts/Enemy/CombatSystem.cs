@@ -22,6 +22,8 @@ public class CombatSystem : MonoBehaviour
 
     [Header("Enemy Spawning")]
     [SerializeField] Transform _enemyParent;
+
+    Action onEndBattle;
     public enum CombatPhase
     {
         start,
@@ -63,7 +65,7 @@ public class CombatSystem : MonoBehaviour
     }
 
 
-    public void StartBattle(EnemyData _data)
+    public void StartBattle(EnemyData _data, Action onFinish = null)
     {
         GameManager.instance.SwitchState(GameManager.GameState.combat);
 
@@ -73,10 +75,14 @@ public class CombatSystem : MonoBehaviour
         _activeEnemy = Instantiate(_data._enemyAi,_enemyParent);
         InitializeFightScreen(_data);
         _activeEnemy.InitializeFight();
+
+        onEndBattle = onFinish;
     }
 
     public void EndBattle()
     {
+        if(onEndBattle != null)
+            onEndBattle();
         GameManager.instance.SwitchState(GameManager.GameState.overworld);
 
         Fader.instance.FadeUnfade(0.5f, () =>

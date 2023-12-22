@@ -419,7 +419,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2484075098157027949}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7364d3e78eefb074a8ba5d0ae07cf02a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -756,8 +756,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.4, y: 5.2}
-  m_SizeDelta: {x: 347.81, y: 103.59}
+  m_AnchoredPosition: {x: 3.2189, y: 3.8957}
+  m_SizeDelta: {x: 343.5072, y: 92.2086}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &206897912702479908
 CanvasRenderer:
@@ -789,15 +789,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: pooo<link="wiggle">Nesssw </link>Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3f734513d856c6c459897f7e82ed6483, type: 2}
+  m_sharedMaterial: {fileID: 8866353247400349869, guid: 3f734513d856c6c459897f7e82ed6483, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 7.140373, z: 0, w: -55.694954}
+  m_margin: {x: 0, y: 9.088234, z: 6.6629333, w: 3.3896866}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -868,7 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacae69b37028a419f6fe51f43cc088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wiggleSpeed: 1.26
+  _wiggleSpeed: 10
   _wiggleAmplitude: 1
 --- !u!1 &7714471135281943866
 GameObject:
@@ -928,40 +928,50 @@ MonoBehaviour:
   _bpm: 60
   _playheadDistance: 138
   _playhead: {fileID: 4470416203447783683}
+  _metronome: {fileID: 0}
+  _notePlayer: {fileID: 0}
   _noteObject: {fileID: 9130973396139683941, guid: 7db4c37b6e2df7e4fbf03d595237c049, type: 3}
   _minimumHoldTime: 0.2
   _notesMap:
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   - type: 0
     heldTime: 0
     pressedThisBeat: 0
+    clip: {fileID: 0}
     id: 0
   _noteObjects:
   - {fileID: 0}
@@ -974,6 +984,7 @@ MonoBehaviour:
   - {fileID: 0}
   _startingNoteHeight: -72.6
   _noteOffset: 10.1
+  _tutorial: 0
 --- !u!82 &8489174613152894387
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1113,6 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   F:
+    _clip: {fileID: 0}
     type: 0
     OnPressed:
       m_PersistentCalls:
@@ -1121,6 +1133,7 @@ MonoBehaviour:
     IsPressed: 0
     id: 0
   A:
+    _clip: {fileID: 0}
     type: 0
     OnPressed:
       m_PersistentCalls:
@@ -1129,6 +1142,7 @@ MonoBehaviour:
     IsPressed: 0
     id: 0
   C:
+    _clip: {fileID: 0}
     type: 0
     OnPressed:
       m_PersistentCalls:
@@ -1137,6 +1151,7 @@ MonoBehaviour:
     IsPressed: 0
     id: 0
   E:
+    _clip: {fileID: 0}
     type: 0
     OnPressed:
       m_PersistentCalls:
@@ -1145,28 +1160,32 @@ MonoBehaviour:
     IsPressed: 0
     id: 0
   notes:
-  - type: 0
+  - _clip: {fileID: 0}
+    type: 0
     OnPressed:
       m_PersistentCalls:
         m_Calls: []
     PressedTime: 0
     IsPressed: 0
     id: 0
-  - type: 0
+  - _clip: {fileID: 0}
+    type: 0
     OnPressed:
       m_PersistentCalls:
         m_Calls: []
     PressedTime: 0
     IsPressed: 0
     id: 0
-  - type: 0
+  - _clip: {fileID: 0}
+    type: 0
     OnPressed:
       m_PersistentCalls:
         m_Calls: []
     PressedTime: 0
     IsPressed: 0
     id: 0
-  - type: 0
+  - _clip: {fileID: 0}
+    type: 0
     OnPressed:
       m_PersistentCalls:
         m_Calls: []

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844a45bc2e84e846ab061a6cf501a79, type: 3}
   m_Name: Opening4
   m_EditorClassIdentifier: 
-  Line: and a 1 and a 2 and a 1 2 3
-  Speaker: lefty
+  Line: Why don't you sing along to this tune with me Kego?
+  Speaker: Brako
   SoundOneShot: 0
   Sound: {fileID: 0}
   AutoContinue: 0
   Speed: 0.01
-  Next: {fileID: 0}
+  Next: {fileID: 11400000, guid: 127cc042434839a4cbb2055022e1aa78, type: 2}

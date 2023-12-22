@@ -7,6 +7,11 @@ public class FakeEnemyTrigger : MonoBehaviour
     [SerializeField] EnemyData _enemyData;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CombatSystem.instance.StartBattle(_enemyData);
+        if (!collision.CompareTag("Player")) return;
+        CombatSystem.instance.StartBattle(_enemyData, () =>
+        {
+            PlayerInfoHolder.Instance._defeatedGuard = true;
+            Destroy(gameObject);
+        });
     }
 }

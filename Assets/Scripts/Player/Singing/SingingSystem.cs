@@ -93,6 +93,12 @@ public class SingingSystem : MonoBehaviour
     private EventHolder _onFinish;
     private bool _receivingInput = false;
     CombatSystem _combatSystem;
+
+    [Header("Tutorial")]
+    [SerializeField] bool _tutorial = false;
+    [SerializeField] AudioSource _tutorialSource;
+    private Action _finishAction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +112,7 @@ public class SingingSystem : MonoBehaviour
         }
         _input = GetComponent<SingingInput>();
         _playerInput = GetComponent<PlayerInput>();
+        if(transform.parent != null)
         _combatSystem = transform.parent.GetComponent<CombatSystem>();
     }
 
@@ -123,7 +130,7 @@ public class SingingSystem : MonoBehaviour
         {
             _duration += Time.deltaTime;
             Note active = _input.GetActiveNote();
-            if (_notesMap[GetCurrentBeat()].type == Note.NoteType.None && active != null)
+            if (_notesMap[GetCurrentBeat()].type == Note.NoteType.None && active != null && _receivingInput)
             {
                 SetNoteByIndex(GetCurrentBeat(), active);
             }
@@ -152,6 +159,10 @@ public class SingingSystem : MonoBehaviour
         _receivingInput = true;
         _isPlaying = true;
         _playhead.localPosition = _playheadPosition;
+        if(_tutorial)
+        {
+            _tutorialSource.Play();
+        }
         StartCoroutine(StartPlayhead(4));
 
         StartCoroutine(StartMetronome(4));
@@ -175,11 +186,15 @@ public class SingingSystem : MonoBehaviour
             _metronome.Play();
             yield return new WaitForSeconds((60f / _bpm));
         }
+        _receivingInput = false;
 
         _notePlayer.Stop();
         yield return new WaitForSeconds((60f / _bpm));
 
         SongEval evaluation = new SongEval(_noteObjects);
+
+        if (_finishAction != null)
+            _finishAction();
 
         if(OnSongEval != null)
             OnSongEval(evaluation);
@@ -195,7 +210,15 @@ public class SingingSystem : MonoBehaviour
         curBeat = Mathf.Clamp(curBeat, 1, 8);
         return curBeat-1;
     }
+    public bool IsSinging()
+    {
+        if (!_isPlaying) return false;
 
+        if(_notesMap[GetCurrentBeat()].type != Note.NoteType.None)
+            return true;
+
+        return false;
+    }
     private void SetNoteByIndex(int index, Note setNote)
     {
         NoteInfo info = new NoteInfo();
@@ -262,16 +285,17 @@ public class SingingSystem : MonoBehaviour
 
     }
 
-    public void EnableSing(EventHolder onfinish = null)
+
+    public void EnableSing(EventHolder onfinish = null, Action finishAction = null)
     {
         transform.GetChild(0).gameObject.SetActive(true);
         _playerInput.enabled = true;
         _playhead.localPosition = _playheadPosition;
         _isPlaying = false;
         _onFinish = onfinish;
-
-
+        _finishAction = finishAction;
     }
+
     public void DisableSing()
     {
 
@@ -294,7 +318,7 @@ public class SingingSystem : MonoBehaviour
     public void Playback(Action onFinish = null)
     {
         _receivingInput = false;
-
+        _duration = 0;
         _playhead.localPosition = _playheadPosition;
         StartCoroutine(StartPlayback(4, onFinish));
     }
@@ -329,7 +353,12 @@ public class SingingSystem : MonoBehaviour
         }
         PlayNote(note._clip);
         note.RevealPower();
-        if(note._length == NoteLength.Quarter || note._length == NoteLength.Quarterdot)
+        if (note._length == NoteLength.Whole)
+        {
+            PlayerInfoHolder.Instance.Heal();
+        }
+
+        if (note._length == NoteLength.Quarter || note._length == NoteLength.Quarterdot)
         {
             if (_combatSystem != null)
                 _combatSystem.DamageEnemy(1);
@@ -340,6 +369,72 @@ public class SingingSystem : MonoBehaviour
         _notePlayer.Stop();
         _notePlayer.clip = clip;
         _notePlayer.Play();
+    }
+
+    public void EighthNoteTutorial(Action onSuccess, Action onFail, AudioClip clip)
+    {
+        _tutorialSource.clip = clip;
+        EnableSing(null, () =>
+        {
+            if(new SongEval(_noteObjects).Eighth == 8)
+            {
+                onSuccess();
+            }
+            else
+            {
+                onFail();
+            }
+        });
+    }
+    public void QuarterNoteTutorial(Action onSuccess, Action onFail, AudioClip clip)
+    {
+        _tutorialSource.clip = clip;
+
+        EnableSing(null, () =>
+        {
+            if (new SongEval(_noteObjects).Quarter == 4)
+            {
+                onSuccess();
+            }
+            else
+            {
+                onFail();
+            }
+        });
+    }
+    public void HalfNoteTutorial(Action onSuccess, Action onFail, AudioClip clip)
+    {
+        _tutorialSource.clip = clip;
+
+        EnableSing(null, () =>
+        {
+            if (new SongEval(_noteObjects).Half == 2)
+            {
+                onSuccess();
+            }
+            else
+            {
+                onFail();
+            }
+        });
+    }
+
+    public void WholeNoteTutorial(Action onSuccess, Action onFail, AudioClip clip)
+    {
+        _tutorialSource.clip = clip;
+
+        EnableSing(null, () =>
+        {
+            if (new SongEval(_noteObjects).Whole == 1)
+            {
+                onSuccess();
+            }
+            else
+            {
+                onFail();
+            }
+            DisableSing();
+        });
     }
 
 }

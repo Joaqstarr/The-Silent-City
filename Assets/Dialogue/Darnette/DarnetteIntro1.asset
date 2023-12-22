@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844a45bc2e84e846ab061a6cf501a79, type: 3}
   m_Name: DarnetteIntro1
   m_EditorClassIdentifier: 
-  Line: Heh...Heh...Heh....
+  Line: I don't like <link="wiggle">dragon</link> out my business, buzz off!
   Speaker: Darnette
   SoundOneShot: 0
   Sound: {fileID: 0}

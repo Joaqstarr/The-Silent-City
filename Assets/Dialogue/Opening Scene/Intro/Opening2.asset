@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844a45bc2e84e846ab061a6cf501a79, type: 3}
   m_Name: Opening2
   m_EditorClassIdentifier: 
-  Line: Remember use the Z, A, Q, 1 keys to play notes
-  Speaker: lefty
+  Line: 'We don''t have much time before <link="wiggle">they</link> come for us.  '
+  Speaker: Brako
   SoundOneShot: 0
   Sound: {fileID: 0}
   AutoContinue: 0

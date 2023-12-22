@@ -15,7 +15,7 @@ MonoBehaviour:
   _maxHealth: 10
   _portrait: {fileID: 21300000, guid: 1e4ec2a064782e14994cfb81ac45ecee, type: 3}
   _name: Robumble
-  _startLine: {fileID: 0}
-  _endLine: {fileID: 0}
+  _startLine: {fileID: 11400000, guid: 8f433757184da394eb358f85949e5460, type: 2}
+  _endLine: {fileID: 11400000, guid: 7c61a3ebc7a18124087cd2ccea3c2639, type: 2}
   _hitLine: []
   _enemyAi: {fileID: 2146034309021855231, guid: d62fe8e5d981717428fc0514a9f7a600, type: 3}

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 430677145698252584}
   - component: {fileID: 685147177925500775}
   - component: {fileID: 1514267646801679154}
+  - component: {fileID: 3375836418309567920}
   m_Layer: 0
   m_Name: OverworldPlayer
   m_TagString: Player
@@ -250,6 +251,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5529395}
   m_EdgeRadius: 0
+--- !u!114 &3375836418309567920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479936250072630178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46647da6da193c41ad1dd394148e65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  _maxHealth: 15
+  _startLocation: {x: -7, y: 0}
 --- !u!1 &7024289030194786313
 GameObject:
   m_ObjectHideFlags: 0

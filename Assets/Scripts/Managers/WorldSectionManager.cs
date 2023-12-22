@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
+
 public class WorldSectionManager : MonoBehaviour
 {
     [SerializeField] WorldSection[] WorldSections;
     [SerializeField] bool _drawDebug = true;
     [SerializeField] Transform _player;
 
-
+    WorldSection activeSection;
     void Update()
     {
-        WorldSection activeSection = GetSectionFromPosition(_player.position);
+        activeSection = GetSectionFromPosition(_player.position);
         if(activeSection != null)
         {
             if (activeSection._camera.Priority != 10)
@@ -55,5 +55,11 @@ public class WorldSectionManager : MonoBehaviour
                 return WorldSections[i];
         }
         return null;
+    }
+
+    public void SpawnRandomEnemy()
+    {
+        if (activeSection == null) return;
+        CombatSystem.instance.StartBattle(activeSection._enemyPool[Random.Range(0, activeSection._enemyPool.Length)]);
     }
 }

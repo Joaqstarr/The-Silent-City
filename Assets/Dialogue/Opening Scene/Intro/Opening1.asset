@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844a45bc2e84e846ab061a6cf501a79, type: 3}
   m_Name: Opening1
   m_EditorClassIdentifier: 
-  Line: Do you remember how to sing? You can fit 8 notes in each verse.
-  Speaker: lefty
+  Line: 'Kego, it''s been a long, <link="wiggle">long</link>, night. '
+  Speaker: Brako
   SoundOneShot: 0
   Sound: {fileID: 0}
   AutoContinue: 0

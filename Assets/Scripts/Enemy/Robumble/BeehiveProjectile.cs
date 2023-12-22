@@ -7,19 +7,31 @@ using UnityEngine;
 public class BeehiveProjectile : MonoBehaviour, IProjectile
 {
     [SerializeField]SpriteRenderer _beehive;
+    [SerializeField]
+    SpriteRenderer[] _sprites;
     [SerializeField] Vector2 _beehiveStartX;
     [SerializeField] Vector2 _beehiveStartY;
     [SerializeField] float _time = 1.3f;
     [SerializeField] float _stayTime = 1.3f;
     [SerializeField] float _timeMultiplier = 1f;
+    [SerializeField] float _timeMultiplierPerNote = 0.5f;
+
+    [SerializeField] List<PolygonCollider2D> _fillers = new List<PolygonCollider2D>();
     [Header("Do Shake Pos Settings")]
     [SerializeField] float _shakePosTime = 0.3f;
     [SerializeField] float _shakePosStrength = 0.1f;
+
     public void Initialize(BattleArena arena, Transform player, SongEval song)
     {
+        _timeMultiplier += _timeMultiplierPerNote * song.Half;
         transform.localPosition = Vector2.zero;
         _beehive.transform.localPosition = GetRandomPos();
         StartCoroutine(WaitForAppear(_time *  _timeMultiplier));
+        _sprites = GetComponentsInChildren<SpriteRenderer>();
+        SetSpriteAlpha(0.5f);
+        RanDestroyFiller();
+        RanDestroyFiller();
+
     }
     private void OnDrawGizmosSelected()
     {
@@ -51,15 +63,34 @@ public class BeehiveProjectile : MonoBehaviour, IProjectile
 
     private void OnShake()
     {
-        Color col =_beehive.color;
-        col.a = 1;
-        _beehive.color = col;
-        StartCoroutine(WaitToDestroy(_stayTime * _timeMultiplier));
+        SetSpriteAlpha(1f);
+        EnableColliders();
+        Destroy(gameObject, _stayTime);
+
     }
-    IEnumerator WaitToDestroy(float time)
+    private void EnableColliders()
     {
-        yield return new WaitForSeconds(time);
-        Destroy(this.gameObject);
-        
+        for (int i = 0; i < _fillers.Count; i++)
+        {
+            _fillers[i].enabled = true;
+        }
+    }
+    private void SetSpriteAlpha(float alpha)
+    {
+        for(int i = 0; i < _sprites.Length; i++)
+        {
+            if (_sprites[i] != null)
+            {
+                Color col = _sprites[i].color;
+                col.a = alpha;
+                _sprites[i].color = col;
+            }
+        }
+    }
+    private void RanDestroyFiller()
+    {
+        int ran = Random.Range(0, _fillers.Count);
+        Destroy(_fillers[ran].gameObject);
+        _fillers.RemoveAt(ran);
     }
 }

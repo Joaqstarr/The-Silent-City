@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844a45bc2e84e846ab061a6cf501a79, type: 3}
   m_Name: Opening3
   m_EditorClassIdentifier: 
-  Line: Hold notes to draw them out, play quicker for more rythm.
-  Speaker: lefty
+  Line: They're trying to <link="wiggle">ERASE</link> our music, but I think we can
+    rest here a bit.
+  Speaker: Brako
   SoundOneShot: 0
   Sound: {fileID: 0}
   AutoContinue: 0

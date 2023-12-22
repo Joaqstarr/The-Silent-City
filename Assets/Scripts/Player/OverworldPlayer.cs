@@ -8,6 +8,8 @@ public class OverworldPlayer : MonoBehaviour
     Rigidbody2D _rb;
     PlayerControls _controls;
     [SerializeField] Animator _animator;
+
+    
     // Start is called before the first frame update
     void Start()
     {

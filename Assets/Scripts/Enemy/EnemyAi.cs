@@ -38,7 +38,6 @@ public class EnemyAi : MonoBehaviour
 
     public void StartFight()
     {
-            Debug.Log("ff");
         CombatSystem.instance.AllowPlayerSing();
     }
 

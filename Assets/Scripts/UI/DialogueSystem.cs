@@ -29,6 +29,7 @@ public class DialogueSystem : MonoBehaviour
     }
     public void StartDialogue(DialogueLine line, UnityEvent completeEvent = null)
     {
+        Debug.Log(line.Line);
         if(_dialogueText == null)
         {
             Debug.LogError("NO TMP TEXT");
@@ -90,8 +91,9 @@ public class DialogueSystem : MonoBehaviour
             StartDialogue(_currentLine.Next, _OnCompleteEvent);
             return;
         }
-        _OnCompleteEvent.Invoke();
-        _OnCompleteEvent = null;
         DisableBox();
+
+        if (_OnCompleteEvent != null) 
+        _OnCompleteEvent.Invoke();
     }
 }
