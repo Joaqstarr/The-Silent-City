@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ProjectileAttack
+  - SmileyFloor
   layers:
   - Default
   - TransparentFX

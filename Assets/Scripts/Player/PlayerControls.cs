@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour
     private float _spawnTimer = 0;
     [SerializeField] Vector2 _ranSpawnTime;
     [SerializeField] WorldSectionManager _sectionManager;
+    [SerializeField] bool _disableEnemySpawn = false;
     // Start is called before the first frame update
 
     public void OnMove(InputValue value)
@@ -47,6 +48,7 @@ public class PlayerControls : MonoBehaviour
     }
     private void SpawnEnemy()
     {
+        if (_disableEnemySpawn) return;
         if (_usableState != GameManager.instance.CurrentGameState) return;
         _spawnTimer = Random.Range(_ranSpawnTime.x, _ranSpawnTime.y);
         _sectionManager.SpawnRandomEnemy();

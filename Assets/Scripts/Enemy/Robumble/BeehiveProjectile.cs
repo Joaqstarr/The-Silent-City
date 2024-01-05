@@ -20,6 +20,7 @@ public class BeehiveProjectile : MonoBehaviour, IProjectile
     [Header("Do Shake Pos Settings")]
     [SerializeField] float _shakePosTime = 0.3f;
     [SerializeField] float _shakePosStrength = 0.1f;
+    [SerializeField] AudioSource _audioSource;
 
     public void Initialize(BattleArena arena, Transform player, SongEval song)
     {
@@ -63,6 +64,7 @@ public class BeehiveProjectile : MonoBehaviour, IProjectile
 
     private void OnShake()
     {
+        _audioSource.Play();
         SetSpriteAlpha(1f);
         EnableColliders();
         Destroy(gameObject, _stayTime);

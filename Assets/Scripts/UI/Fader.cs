@@ -20,6 +20,8 @@ public class Fader : MonoBehaviour
         instance = this;
         _image = GetComponent<Image>();
 
+        CutToUnfade();
+
     }
 
     public void FadeUnfade(float time = 0.5f, Action onHalf = null, Action onDone = null)

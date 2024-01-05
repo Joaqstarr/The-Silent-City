@@ -4,8 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
-using System.Linq;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -29,7 +27,6 @@ public class DialogueSystem : MonoBehaviour
     }
     public void StartDialogue(DialogueLine line, UnityEvent completeEvent = null)
     {
-        Debug.Log(line.Line);
         if(_dialogueText == null)
         {
             Debug.LogError("NO TMP TEXT");

@@ -7,6 +7,7 @@ public class SavePoint : MonoBehaviour
 
     PlayerInfoHolder holder;
     [SerializeField]DialogueLine saveLine;
+    [SerializeField] AudioSource _source;
     bool canSave =false;
     private void Start()
     {
@@ -28,5 +29,6 @@ public class SavePoint : MonoBehaviour
 
         SaveHandler.SaveData(holder);
         DialogueSystem.instance.StartDialogue(saveLine);
+        _source.Play();
     }
 }

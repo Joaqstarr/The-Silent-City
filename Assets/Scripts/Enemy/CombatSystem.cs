@@ -34,7 +34,7 @@ public class CombatSystem : MonoBehaviour
         
     }
 
-    CombatPhase _activePhase;
+    public CombatPhase _activePhase;
     EnemyAi _activeEnemy;
     [Header("Enemy Attacks")]
 
@@ -88,6 +88,7 @@ public class CombatSystem : MonoBehaviour
         Fader.instance.FadeUnfade(0.5f, () =>
         {
             _battleCam.Priority = -1;
+            Destroy(_activeEnemy.gameObject);
             ResetBattleScreen();
         });
 
@@ -151,6 +152,7 @@ public class CombatSystem : MonoBehaviour
     }
     private void EndScreen()
     {
+        SwitchState(CombatPhase.endscreen);
         _activeEnemy.EndFight(() =>
         {
             EndBattle();

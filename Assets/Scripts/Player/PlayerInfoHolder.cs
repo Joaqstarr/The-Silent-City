@@ -6,10 +6,14 @@ public class PlayerInfoHolder : MonoBehaviour
 {
     public static PlayerInfoHolder Instance;
     public bool _defeatedGuard = false;
+    public bool _defeatedBoss = false;
+
     public int _health;
     [SerializeField]int _maxHealth;
     [SerializeField] Vector2 _startLocation;
     [SerializeField] GameObject _guard;
+    [SerializeField] GameObject _boss;
+
     [SerializeField] int _heal = 6;
     [SerializeField]
     PlayerBattleUI _battleUI;
@@ -30,7 +34,10 @@ public class PlayerInfoHolder : MonoBehaviour
             pos.y = _loadedData.pos[1];
             transform.position = pos;
             _defeatedGuard = _loadedData._defeatedGuard;
+            _defeatedBoss = _loadedData._defeatedBoss;
             if (_defeatedGuard) Destroy(_guard);
+            if (_defeatedBoss) Destroy(_boss);
+
 
             //Save Loaded
 
@@ -40,6 +47,7 @@ public class PlayerInfoHolder : MonoBehaviour
             _health = _maxHealth;
             transform.position = _startLocation;
             _defeatedGuard = false;
+            _defeatedBoss = false;
             SaveHandler.SaveData(this);
 
             //Save Created

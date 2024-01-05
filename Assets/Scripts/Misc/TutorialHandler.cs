@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class TutorialHandler : MonoBehaviour
 {
@@ -43,6 +44,21 @@ public class TutorialHandler : MonoBehaviour
     [SerializeField]
     DialogueLine _wholeNoteLoop;
     [SerializeField] AudioClip _wholeClip;
+    [Header("Outro")]
+    [SerializeField] DialogueLine _outro;
+    [SerializeField] float HillY;
+    [SerializeField] float Building1;
+    [SerializeField] float Building2;
+    [SerializeField] Transform _hill;
+    [SerializeField] Transform _building1;
+    [SerializeField] Transform _building2;
+    [SerializeField] float _transTime = 4f;
+    [SerializeField]CanvasGroup _bg;
+    [Header("Final Expo")]
+    [SerializeField] DialogueLine _finalExpo;
+
+
+
 
     // Start is called before the first frame update
     public void StartGame()
@@ -51,7 +67,6 @@ public class TutorialHandler : MonoBehaviour
         nextEvent.AddListener(() =>
         {
             Intro();
-            Debug.Log("startdone");
             _blackVoid.DOFade(0, 2f);
 
         });
@@ -60,13 +75,11 @@ public class TutorialHandler : MonoBehaviour
 
     private void Intro()
     {
-        Debug.Log("Intro");
         UnityEvent nextEvent = new UnityEvent();
         nextEvent.AddListener(() =>
         {
             _audioSource.DOFade(0, 0.2f);
 
-            Debug.Log("intro done");
             _singingSystem.EnableSing(null, () =>
             {
                 EighthNote();
@@ -148,7 +161,7 @@ public class TutorialHandler : MonoBehaviour
 
             _singingSystem.WholeNoteTutorial(() =>
             {
-                WholeNote();
+                FinishTutorial();
             }, () =>
             {
                 DialogueSystem.instance.StartDialogue(_wholeNoteLoop, nextEvent);
@@ -156,5 +169,39 @@ public class TutorialHandler : MonoBehaviour
             }, _wholeClip);
         });
         DialogueSystem.instance.StartDialogue(_wholeNoteStart, nextEvent);
+    }
+    public void FinishTutorial()
+    {
+        UnityEvent nextEvent = new UnityEvent();
+        nextEvent.AddListener(() =>
+        {
+            Pan();
+        });
+
+        DialogueSystem.instance.StartDialogue(_outro, nextEvent);
+    }
+    private void Pan()
+    {
+        _hill.DOLocalMoveY(HillY, _transTime);
+        _building1.DOLocalMoveY(Building1, _transTime);
+        _building2.DOLocalMoveY(Building2, _transTime).onComplete+= FadeOut;
+    }
+    private void FadeOut()
+    {
+        _bg.DOFade(1, 1).onComplete += FinalExposition;
+    }
+    private void FinalExposition()
+    {
+        UnityEvent nextEvent = new UnityEvent();
+        nextEvent.AddListener(() =>
+        {
+            ChangeScene();
+        });
+
+        DialogueSystem.instance.StartDialogue(_finalExpo, nextEvent);
+    }
+    private void ChangeScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

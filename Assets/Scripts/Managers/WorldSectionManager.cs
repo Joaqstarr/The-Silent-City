@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -8,7 +9,7 @@ public class WorldSectionManager : MonoBehaviour
     [SerializeField] WorldSection[] WorldSections;
     [SerializeField] bool _drawDebug = true;
     [SerializeField] Transform _player;
-
+    [SerializeField]AudioSource _audioSource;
     WorldSection activeSection;
     void Update()
     {
@@ -23,7 +24,18 @@ public class WorldSectionManager : MonoBehaviour
                         activeSection._camera.Priority = 10;
                     else
                         WorldSections[i]._camera.Priority = 0;
+
+
                 }
+            }
+            if(_audioSource.clip == null || activeSection._music != _audioSource.clip)
+            {
+                if (activeSection._music != null)
+                {
+                    _audioSource.clip = activeSection._music;
+                    _audioSource.Play();
+                }
+
             }
         }
     }
@@ -60,6 +72,7 @@ public class WorldSectionManager : MonoBehaviour
     public void SpawnRandomEnemy()
     {
         if (activeSection == null) return;
+        if (activeSection._enemyPool.Count() == 0) return;
         CombatSystem.instance.StartBattle(activeSection._enemyPool[Random.Range(0, activeSection._enemyPool.Length)]);
     }
 }

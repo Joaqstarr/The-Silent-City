@@ -14,5 +14,6 @@ public class WorldSection
     public Vector2 _yBounds;
     public Color _debugColor;
     public EnemyData[] _enemyPool;
+    public AudioClip _music;
 
 }

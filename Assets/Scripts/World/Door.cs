@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     [SerializeField] Vector2 _teleportPos;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (GameManager.instance.CurrentGameState != GameManager.GameState.overworld) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             Fader.instance.FadeUnfade(0.5f, () =>

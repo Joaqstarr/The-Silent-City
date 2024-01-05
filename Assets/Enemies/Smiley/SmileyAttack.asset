@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: SmileyAttack
   m_EditorClassIdentifier: 
   _attackTimer: 10
-  _prefabToSpawn: {fileID: 3424265838839056573, guid: ea69c4ac4d774984db2e059f3a6c5efc, type: 3}
+  _prefabToSpawn: {fileID: 2115159710078262622, guid: 598f60b1e4303c240ba2f22b13fc4e3a, type: 3}
   _spawns:
   - time: 1
     amount: 1
-  - time: 4.5
-    amount: 2
+  - time: 3
+    amount: 1
+  - time: 5
+    amount: 1
+  - time: 7
+    amount: 1
+  - time: 7.5
+    amount: 1
+  - time: 8
+    amount: 1
